@@ -1,0 +1,391 @@
+h1 {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+h2 {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+p {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+}
+
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+.Safe {
+
+    width: 380px;
+    height: 290px;
+    border: 4px solid black;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: lawngreen;
+    border-radius: 15px;
+    text-align: center;
+
+}
+
+.Critical {
+    width: 380px;
+    height: 290px;
+    border: 4px solid black;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: red;
+    border-radius: 15px;
+    text-align: center;
+
+
+
+}
+
+.Warning {
+    width: 380px;
+    height: 290px;
+    border: 4px solid black;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: darkorange;
+    border-radius: 15px;
+    text-align: center;
+}
+
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    width: 100%;
+    gap: 25px;
+    margin-bottom: -12px;
+    margin-top: -12px;
+    margin-left: -12px;
+    margin-right: -12px;
+}
+
+.topnav {
+    opacity: 0.95;
+    filter: alpha(opacity=95);
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #5c5c5c;
+    overflow: hidden;
+    padding: 12px;
+    border-radius: 5px;
+}
+
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    height: 20px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.topnav a.active {
+    background-color: #4E59AF;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+
+
+
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+.active,
+.accordion:hover {
+    background-color: #ccc;
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: ;
+    display: none;
+    overflow: hidden;
+}
+
+.accordion:after {
+    content: '\02795';
+    font-size: 13px;
+    color: #777;
+    float: right;
+    margin-left: 5px;
+}
+
+input[type=text],
+input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus,
+input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+button:hover {
+    opacity: 1;
+}
+
+.cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+
+.cancelbtn,
+.signupbtn {
+    float: left;
+    width: 50%;
+}
+
+.container {
+    padding: 16px;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+@media screen and (max-width: 300px) {
+
+    .cancelbtn,
+    .signupbtn {
+        width: 100%;
+    }
+}
+
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+
+}
+
+
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.topnav a.active {
+    background-color: #04AA6D;
+    color: white;
+}
+
+
+
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+.active,
+.accordion:hover {
+    background-color: #ccc;
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: ;
+    display: none;
+    overflow: hidden;
+}
+
+.accordion:after {
+    content: '\02795';
+    font-size: 13px;
+    color: #777;
+    float: right;
+    margin-left: 5px;
+}
+
+input[type=text],
+input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus,
+input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+button:hover {
+    opacity: 1;
+}
+
+.cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+
+.cancelbtn,
+.signupbtn {
+    float: left;
+    width: 50%;
+}
+
+.container {
+    padding: 16px;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+@media screen and (max-width: 300px) {
+
+    .cancelbtn,
+    .signupbtn {
+        width: 100%;
+    }
+}
+
+ul {
+    position: absolute;
+    top: 50%;
+    left: 50% display: flex;
+}
+
+ul li {
+    list-style: none;
+    width: 6px;
+    height: 20px;
+    margin: 0 4px;
+    animation: animate .7s infinite alternate
+}
+
+@keyframes animate {
+    0% {
+        transform: scaleY(1);
+
+    }
+
+    25% {
+        transform: scaleY(1);
+
+    }
+
+    50% {
+        transform: scaleY(1);
+
+
+    }
+
+    75% {
+        transform: scaleY(1);
+
+    }
+
+    100% {
+        transform: scaleY(2);
+
+    }
+
+    125% {
+        transform: scaleY(1);
+    }
+}
+
+ul li:nth-child(1) {
+    animation-delay: .1s;
+}
+
+ul li:nth-child(2) {
+    animation-delay: .2s;
+}
+
+ul li:nth-child(3) {
+    animation-delay: .3s;
+}
+
+ul li:nth-child(4) {
+    animation-delay: .4s;
+
+}
+
+ul li:nth-child(5) {
+    animation-delay: .5s;
+
+}
+
+ul li:nth-child(6) {
+    animation-delay: .6s;
+}

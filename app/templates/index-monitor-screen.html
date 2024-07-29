@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <!--links stylesheet and favicon to the webpage -->
+        <link rel="stylesheet" type="text/css" href="/static/css/monitor_style.css">
+        <link rel="icon" href="https://gjames.com/sites/default/files/favicon.ico">
+        <meta http-equiv="refresh" content="45">
+        <!-- creates a title for the current webpage-->
+        <title>Home - Monitor View</title>
+    </head>
+    <body>
+        <img src="static/images/logo.png" width="363" height="88">
+        <div class="topnav">
+            <div class="flex-container">
+                <div><a href="/">Return to Laptop View</a></div>
+                <div><a href="/manager_threshold">Change Threshold</a></div>
+                <div><a href="/login">Login</a></div>
+                <div><a href="/signup">Signup</a></div>
+                <div><a href="/logout">Logout</a></div>
+            </div>
+        </div>
+        <!-- Monitor infographic below-->
+        <h2>External Temps</h2>
+        <div class="{{temp_status_monitor}}">
+            <h1>Current Status: {{temp_status_monitor}}</h1>
+            <h2>Outside Temperature: {{ outside_temp }} &deg C</h2>
+            <h2>Feels Like: {{ outside_apparent_temp }}</h2>
+            <p>&nbsp; &nbsp; &nbsp; &nbsp;</p>
+            <p>&nbsp; &nbsp; &nbsp; &nbsp;</p>
+            <p>&nbsp; &nbsp; &nbsp; &nbsp;</p>
+            <p>&nbsp; &nbsp; &nbsp; &nbsp;</p>
+        </div>
+    </body>
+</html>

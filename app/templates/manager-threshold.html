@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+        <link rel="icon" href="https://gjames.com/sites/default/files/favicon.ico">
+        <!-- changes title of the webpage-->
+        <title>GJames - Change Temp Threshold</title>
+    <body>
+    <div class="topnav">
+            <div class="flex-container">
+                <div><a class="active" href="/">Home</a></div>
+                <div><a href="/login">Login</a></div>
+                <div><a href="/manager_threshold">Change Threshold</a></div>
+                <div><a href="/logout">Logout</a></div>
+        </div>
+        <!-- creates a form that allows managers to change the temperature threshold -->
+    </div>
+        <div class="container">
+            <form method="post">
+                <label for="change_time">Current Time:</label>
+                <input type='time' id="change_time" name="changetime">
+                <label for="change_date">Current Date:</label>
+                <input type="date" id="change_date" name="changetime">
+                <!-- input field for new temperature threshold -->
+                <label for="new_tempThreshold">New Temperature Threshold</label>
+                <input type="text"  id="new_tempThreshold" name="newtempThreshold">
+                <button type="submit" id="applyChanges_btn">Apply Changes</button>
+            </form>
+        </div>
+    </body>
+</html>
