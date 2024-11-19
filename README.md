@@ -10,3 +10,6 @@ If you desire, i am more than happy for people to modify my work, I also encoura
 if you have any inquires please DM me on Discord, where my ID is sevenofthr4wn
 
 
+#Using the Project on Windows 10/11
+
+It is possible to use this project on Windows 10/11 because it was devloped on a Windows machine. To start the Flask web server, go into the PyCharm console, and type: "flask run". This will launch the webpage which can be accessed via the local url when executing the command.
