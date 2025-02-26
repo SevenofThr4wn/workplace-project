@@ -4,8 +4,15 @@ Note: The system was intentionally designed to be operated on the raspberry pi, 
 
 More documentation will come soon when more progress has been made.
 
-If you desire, i am more than happy for people to modify my work, I also encourage people who do modify the source code to give any feedback so I can improve these small projects!
+If you desire, I am more than happy for people to modify my work, I also encourage people who do modify the source code to give any feedback so I can improve these small projects!
 
 if you have any inquires please DM me on Discord, where my ID is sevenofthr4wn
 
 
+
+Dependencies and other Requirements
+
+- Flask 
+- Flask-Login
+
+- SQLlite Database Editor

@@ -6,7 +6,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from requests import get
 from config import username, password
 import math
-proxies = {'http': f'http://{username}:{password}@proxy.eq.edu.au:80', 'https': f'http://{username}:{password}@proxy.eq.edu.au:80'}
 
 
 # Defines user
@@ -33,7 +32,8 @@ def load_user(UserID):
 @app.route('/')
 def index():
     # retrieves data from the BOM API(ln:37)
-    r = get('http://reg.bom.gov.au/fwo/IDQ60901/IDQ60901.94576.json', proxies=proxies)
+    # delete "proxies=proxies" if not using a proxy enabled network
+    r = get('http://reg.bom.gov.au/fwo/IDQ60901/IDQ60901.94576.json')
     #opens the JSON file(ln:39) & loads the JSON file(ln:40)
     outsideTempJSON = r.json()
     # retrieves the outside temperature(ln:44),apparent temperature(ln:45), & humidity(ln:46)
@@ -62,14 +62,16 @@ def index():
                    "(Outside_Temp, Outside_Humidity, Outside_Apparent_Temp) "
                    "VALUES(?, ?, ?)", (outside_temp, outside_humidity, outside_AppTemp))
     ins_DB.commit()
-    safe_threshold = 29
+    safe_temp = 25
+    warning_temp = 30
+    critical_temp = 35
     temp_status = ""
-    if temp_var > safe_threshold:
+    if temp_var > critical_temp:
         temp_status = "Critical"
-    elif temp_var < safe_threshold:
+    elif temp_var > warning_temp:
+        temp_status = "Warning"
+    elif temp_var < safe_temp:
         temp_status = "Safe"
-    elif temp_var == safe_threshold:
-        temp_status = "Unknown"
     # passes the variables through the render template to be used with HTML(ln:66 - 70)
     return render_template('index.html', outside_temp=outside_temp,
                            outside_AppTemp=outside_AppTemp,
@@ -102,10 +104,11 @@ def get_data():
         return "Error Submitting Data"
 
 
-@app.route('/monitordisplay', methods=['POST'])
+@app.route('/monitordisplay')
 def monitorDisplay():
     # gets all the required data from the Bureau of Meteorology(ln:99)
-    r = get('http://reg.bom.gov.au/fwo/IDQ60901/IDQ60901.94576.json', proxies=proxies)
+    # delete "proxies=proxies" if not using a proxy enabled network
+    r = get('http://reg.bom.gov.au/fwo/IDQ60901/IDQ60901.94576.json')
     outsideTempJSON = r.json()
     bomData = outsideTempJSON['observations']['data'][0]
     outside_temp = bomData["air_temp"]
@@ -127,15 +130,15 @@ def monitorDisplay():
     apparent_temp_sql_monitor = apparent_temp_get_monitor.execute("SELECT Inside_Apparent_Temp "
                                                                   "FROM Temps")
     apparent_temp_monitor_var = apparent_temp_sql_monitor.fetchone()
-    safe_temp = 25
-    warning_temp = 30
-    critical_temp = 35
+    safe_temp_monitor = 25
+    warning_temp_monitor = 30
+    critical_temp_monitor = 35
     temp_status_monitor = ""
-    if current_temp_monitor > critical_temp:
+    if current_temp_monitor > critical_temp_monitor:
         temp_status_monitor = "Critical"
-    elif current_temp_monitor > warning_temp:
+    elif current_temp_monitor > warning_temp_monitor:
         temp_status_monitor = "Warning"
-    elif current_temp_monitor < safe_temp:
+    elif current_temp_monitor < safe_temp_monitor:
         temp_status_monitor = "Safe"
     return render_template('index-monitor-screen.html',
                            outside_temp=outside_temp,
@@ -145,7 +148,7 @@ def monitorDisplay():
                            threshold_get_monitor_var=threshold_get_monitor_var)
 
 
-@app.route('/manager_threshold', methods=['POST'])
+@app.route('/manager_threshold')
 @login_required
 # @login_required
 def manager_threshold():
