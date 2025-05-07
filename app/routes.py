@@ -4,7 +4,7 @@ from flask import render_template, redirect, request
 from flask_login import logout_user, UserMixin, login_required, current_user, login_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from requests import get
-from config import username, password
+from config import username
 import math
 
 
@@ -21,7 +21,7 @@ class User(UserMixin):
 @login_manager.user_loader
 def load_user(UserID):
     db = get_db()
-    user_search = db.execute("SELECT * FROM User WHERE UserID = ?", (UserID, ))
+    user_search = db.execute("SELECT * FROM User WHERE UserID = ?", (UserID,))
     user_details = user_search.fetchone()
     if user_details:
         user = User(user_details["UserID"], user_details["username"])
@@ -34,7 +34,7 @@ def index():
     # retrieves data from the BOM API(ln:37)
     # delete "proxies=proxies" if not using a proxy enabled network
     r = get('http://reg.bom.gov.au/fwo/IDQ60901/IDQ60901.94576.json')
-    #opens the JSON file(ln:39) & loads the JSON file(ln:40)
+    # opens the JSON file(ln:39) & loads the JSON file(ln:40)
     outsideTempJSON = r.json()
     # retrieves the outside temperature(ln:44),apparent temperature(ln:45), & humidity(ln:46)
     bomData = outsideTempJSON['observations']['data'][0]
@@ -99,9 +99,9 @@ def get_data():
                        "VALUES(?, ?, ?)", (Inside_Temp, Inside_Humidity, Inside_Apparent_Temperature))
         db_get.commit()
         db_get.close()
-        return "Uploaded to Database"
+        return "LOG: Uploaded to Database"
     except:
-        return "Error Submitting Data"
+        return "LOG: Error submitting data"
 
 
 @app.route('/monitordisplay')
@@ -153,16 +153,16 @@ def monitorDisplay():
 # @login_required
 def manager_threshold():
     if request.method == "POST":
-        #retrieves the change time field from the HTML form(ln:128)
-        #retrieves the change date field from the HTML form(ln:129)
-        #retrieves the new temperature threshold field from the HTML form(ln:130)
-        #retrives the temperature threshold field from the HTML form(ln:131)
+        # retrieves the change time field from the HTML form(ln:128)
+        # retrieves the change date field from the HTML form(ln:129)
+        # retrieves the new temperature threshold field from the HTML form(ln:130)
+        # retrieves the temperature threshold field from the HTML form(ln:131)
         change_time = request.form.get("change_time")
         change_date = request.form.get("change_date")
         new_tempThreshold = request.form.get("new_tempThreshold")
         temp_Threshold = request.form.get("temp_Threshold")
         db_thresholdLog = get_db()
-        #executes an SQL query that inserts the retrieved fields into the database(ln:163 - 168)
+        # executes an SQL query that inserts the retrieved fields into the database(ln:163 - 168)
         db_thresholdLog.execute("INSERT INTO Threshold_Logs "
                                 "(Change_Time, Change_Date, new_tempThreshold) "
                                 "VALUES (?, ?, ?); "
@@ -183,7 +183,7 @@ def signup():
         check_user = db_login.execute("SELECT * FROM user WHERE username = ?", (username,))
         check_user_results = check_user.fetchall()
         if check_user_results:
-            print("User already exists")
+            print("Error: User Already Exists!")
         else:
             passwordHash = generate_password_hash(password)
             db_login.execute("INSERT INTO User "
@@ -191,7 +191,7 @@ def signup():
                              "VALUES(?, ?)", (username, passwordHash))
             db_login.commit()
             db_login.close()
-            print("User has signed up")
+            print("LOG: Current user has registered!")
             return redirect("/login")
     return render_template("signup.html")
 
@@ -212,12 +212,12 @@ def login():
                 check_password_hash(password_login, "Manager_1")
                 user = User(user_details["UserID"], username)
                 login_user(user)
-                print("Login Successful")
+                print("LOG: User Login Successful!")
                 return redirect("/")
             else:
-                    print("Error: incorrect username or password")
+                print("ERROR: Incorrect username or password! Please try again")
         else:
-                print("Error - user doesn't exist")
+            print("ERROR: User doesn't exist!")
     return render_template("login.html")
 
 
@@ -225,5 +225,5 @@ def login():
 @login_required
 def logout():
     logout_user()
-    print("You have logged out")
+    print("LOG: User has logged out!")
     return redirect("/")
