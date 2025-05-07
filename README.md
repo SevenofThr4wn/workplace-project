@@ -5,11 +5,9 @@ This flask web application was designed to be used as a tool for workplace manag
 
 More documentation will come soon when more progress has been made.
 
-If you desire, i am more than happy for people to modify my work, I also encourage people who do modify the source code to give any feedback so I can improve these small projects!
+If you desire, I am more than happy for people to modify my work, I also encourage people who do modify the source code to give any feedback so I can improve these small projects!
 
 if you have any inquires please DM me on Discord, where my ID is sevenofthr4wn
 
 
-#Using the Project on Windows 10/11
 
-It is possible to use this project on Windows 10/11 because it was devloped on a Windows machine. To start the Flask web server, go into the PyCharm console, and type: "flask run". This will launch the webpage which can be accessed via the local url when executing the command.
