@@ -2,96 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- stylesheet link and favicon link -->
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
-    <link rel="icon" href="https://gjames.com/sites/default/files/favicon.ico">
-    <meta http-equiv="refresh" content="45">
-    <!-- adds the title of the webpage-->
     <title>Gjames</title>
+    <meta http-equiv="refresh" content="45">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" href="https://gjames.com/sites/default/files/favicon.ico">
 </head>
 <body>
-<img src="static/images/logo.png" width="363" height="88">
-<div class="topnav">
-    <div class="flex-container">
-        <div><a class="active" href="/">Home</a></div>
-        <div><a href="/manager_threshold">Change Threshold</a></div>
-        <div><a href="/monitordisplay">Enter Monitor View</a></div>
-        <div><a href="/login">Login</a></div>
-        <div><a href="/signup">Signup</a></div>
-        <div><a href="/logout">Logout</a></div>
-        <div><p>&nbsp; &nbsp; &nbsp; &nbsp;</p></div>
-        <div><p>&nbsp; &nbsp; &nbsp; &nbsp;</p></div>
-        <div><p>&nbsp; &nbsp; &nbsp; &nbsp;</p></div>
-        <div><p>&nbsp; &nbsp; &nbsp; &nbsp;</p></div>
-        <div><p>&nbsp; &nbsp; &nbsp; &nbsp;</p></div>
-        <div><p>&nbsp; &nbsp; &nbsp; &nbsp;</p></div>
-        <div><p>&nbsp; &nbsp; &nbsp; &nbsp;</p></div>
-        <div><p>&nbsp; &nbsp; &nbsp; &nbsp;</p></div>
-    </div>
-</div>
-<h1><u>Dashboard</u></h1>
-<div>
-    <h2 class="{{temp_status}}">Current Status: {{temp_status}}</h2>
-</div>
-<h2>Current Internal Temperature: {{ temp_var }} &deg C</h2>
-<!-- accordion dropdown with Javascript-->
-<button class="accordion">Outside Temp(Source: The Bureau of Meteorology)</button>
-<div class="panel">
-    <p>&nbsp; &nbsp; &nbsp; &nbsp;</p>
-    <p>Outside Temperature: {{ outside_temp }} &deg C</p>
-    <p>Outside Humidity: {{ outside_humidity }} %</p>
-    <p>Outside Apparent Temperature: {{ outside_AppTemp }} &deg C</p>
-    <p>&nbsp; &nbsp; &nbsp; &nbsp;</p>
-</div>
-<button class="accordion">Inside Temps(Source: Integrated Hardware)</button>
-<div class="panel">
-    <p>&nbsp; &nbsp; &nbsp; &nbsp;</p>
-    <p>Inside Temperature: {{ temp_var }} &deg C</p>
-    <p>Inside Humidity: {{ hum_var }} %</p>
-    <p>Inside Apparent Temp: {{ apparent_temp_var }} &deg C</p>
-    <p>&nbsp; &nbsp; &nbsp; &nbsp;</p>
-</div>
-<button class="accordion">Temperature Threshold</button>
-<div class="panel">
-    <p>&nbsp; &nbsp; &nbsp; &nbsp;</p>
-    <p>Temperature Threshold: {{ sql_tg }} &deg C</p>
-    <p>Average Threshold: Temp &deg C </p>
-    <p>&nbsp; &nbsp; &nbsp; &nbsp;</p>
-</div>
+<header>
+    <img src="/static/images/logo.png" width="363" height="88" alt="Gjames Logo">
+    <nav class="topnav">
+        <div class="flex-container">
+            <a class="active" href="/">Home</a>
+            <a href="/manager_threshold">Change Threshold</a>
+            <a href="/monitordisplay">Enter Monitor View</a>
+            <a href="/login">Login</a>
+            <a href="/signup">Signup</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <h1><u>Dashboard</u></h1>
+    <h2 class="{{ temp_status }}">Current Status: {{ temp_status }}</h2>
+    <h2>Current Internal Temperature: {{ temp_var }} &deg;C</h2>
+
+    <!-- Accordion Section -->
+    <section>
+        <button class="accordion">Outside Temp (Source: The Bureau of Meteorology)</button>
+        <div class="panel">
+            <p>Outside Temperature: {{ outside_temp }} &deg;C</p>
+            <p>Outside Humidity: {{ outside_humidity }}%</p>
+            <p>Outside Apparent Temperature: {{ outside_AppTemp }} &deg;C</p>
+        </div>
+
+        <button class="accordion">Inside Temps (Source: Integrated Hardware)</button>
+        <div class="panel">
+            <p>Inside Temperature: {{ temp_var }} &deg;C</p>
+            <p>Inside Humidity: {{ hum_var }}%</p>
+            <p>Inside Apparent Temp: {{ apparent_temp_var }} &deg;C</p>
+        </div>
+
+        <button class="accordion">Temperature Threshold</button>
+        <div class="panel">
+            <p>Temperature Threshold: {{ sql_tg }} &deg;C</p>
+            <p>Average Threshold: Temp &deg;C</p>
+        </div>
+    </section>
+</main>
+
 <script>
-    var acc = document.getElementsByClassName("accordion");
-    var i;
+    document.querySelectorAll('.accordion').forEach(button => {
+        button.addEventListener('click', () => {
+            button.classList.toggle('active');
+            const panel = button.nextElementSibling;
 
-    for (i = 0; i < acc.length; i++) {
-      acc[i].addEventListener("click", function() {
-
-        this.classList.toggle("active");
-
-        /* Toggle between hiding and showing the active panel */
-        var panel = this.nextElementSibling;
-        if (panel.style.display === "block") {
-          panel.style.display = "none";
-        } else {
-          panel.style.display = "block";
-        }
-      });
-    }
-</script>
-<script>
-    var acc = document.getElementsByClassName("accordion");
-    var i;
-
-    for (i = 0; i <  acc.length; i++) {
-        acc[i].addEventListener("click", function(){
-            this.classList.toggle("active");
-            var panel = this.nextElementSibling;
             if (panel.style.maxHeight) {
                 panel.style.maxHeight = null;
-            }else{
+            } else {
                 panel.style.maxHeight = panel.scrollHeight + "px";
             }
         });
-    }
+    });
 </script>
 </body>
 </html>

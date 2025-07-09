@@ -2,20 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Change the title if using as a template for something different -->
     <title>GJames - Staff Login</title>
-    <!-- links css to html page & and links the favicon to be used on the webpage-->
-    <link rel="stylesheet" type="text/css" href="/static/css/style-login.css">
+    <link rel="stylesheet" href="/static/css/style-login.css">
     <link rel="icon" href="https://gjames.com/sites/default/files/favicon.ico">
-    <title>Log-in</title>
 </head>
 <body>
-<!-- creates a form on the web page for users to log in -->
-<h1>Login</h1>
-<form action="/login" method="post">
-    Username <input type="text" name="username">
-    Password <input type="password" name="password">
-    <input type="submit" value="submit">
-</form>
+<main>
+    <h1>Staff Login</h1>
+    <form action="/login" method="post" class="login-form">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+
+        <input type="submit" value="Login">
+    </form>
+</main>
 </body>
 </html>
