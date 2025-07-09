@@ -7,7 +7,7 @@ from requests import get
 import math
 
 
-# Defines user
+# Defines
 class User(UserMixin):
     def __init__(self, id, username):
         self.id = id
